@@ -338,20 +338,21 @@ class SoloExploration(BaseExploration):
 
         is_select: bool = False  # 是否选中了好友
         if find_mode == FindMode.RECENT_FRIEND:
-            logger.info('Find recent friend')
-            # 获取’最近‘在friend_class中的index
-            if '最近' not in friend_class:
+            logger.info('Find 跨区 friend')
+            # 获取跨区在friend_class中的index
+            if '跨区' not in friend_class:
                 logger.warning('No recent friend')
                 return False
-            recent_index = friend_class.index('最近')
-            while recent_index == 1:
+            recent_index = friend_class.index('跨区')
+            while recent_index == 2:
                 self.screenshot()
-                if self.appear(self.I_FLAG_2_ON):
+                logger.info('Find 跨区 friend')
+                if self.I_FLAG_K_ON.match_mean_color(self.device.image, self.INVITE_FLAG_ON, 10):
                     break
-                if self.appear_then_click(self.I_FLAG_2_OFF, interval=1):
+                if self.click(self.I_FLAG_K_OFF, interval=1):
                     continue
 
-            logger.info(f'Now find friend in ”最近“')
+            logger.info(f'Now find friend in 跨区')
             sleep(1)
             if not is_select:
                 if self.detect_select(name):

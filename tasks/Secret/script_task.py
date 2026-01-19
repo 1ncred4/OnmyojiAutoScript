@@ -80,13 +80,20 @@ class ScriptTask(GameUi, GeneralBattle, SwitchSoul, SecretAssets):
             layer = self.find_battle()
             logger.info(f'Current layer: {layer}')
             if not layer:
-                if self.appear(WeeklyTriflesAssets.I_WT_SE_SHARE):
+                logger.info('find_battle() returned None, checking weekly trifles status')
+                # 检查周常分享按钮
+                has_share_button = self.appear(WeeklyTriflesAssets.I_WT_SE_SHARE)
+                logger.info(f'WeeklyTriflesAssets.I_WT_SE_SHARE appeared: {has_share_button}')
+                if has_share_button:
                     logger.warning('You have completed the weekly trifles, skip')
                     break
+                # OCR识别总挑战次数文本
                 text = self.O_SE_TOTAL_TIME.ocr_single(self.device.image)
+                logger.info(f'O_SE_TOTAL_TIME OCR result: "{text}"')
                 if '尚未' not in text:
                     logger.warning('You have completed the weekly trifles, skip')
                     break
+                logger.info('Weekly trifles not completed yet, continue checking')
                 continue
             if layer >= 6:
                 first_battle = False
@@ -213,6 +220,7 @@ class ScriptTask(GameUi, GeneralBattle, SwitchSoul, SecretAssets):
         if self.appear(self.I_CHAT_CLOSE_BUTTON):
             self.ui_click_until_disappear(self.I_CHAT_CLOSE_BUTTON, interval=2)
         text_pos = self.O_SE_NO_PASS.ocr(self.device.image)
+        logger.info(f'find_battle() - O_SE_NO_PASS position: {text_pos}')
         if text_pos != (0, 0, 0, 0):
             # 如果能找得到 未通关 ，那可以挑战
             layer = confirm_layer(self.O_SE_JADE, text_pos)
@@ -225,7 +233,9 @@ class ScriptTask(GameUi, GeneralBattle, SwitchSoul, SecretAssets):
 
         else:
             # 如果不是就向下滑动，继续找或者是判断
+            logger.info('find_battle() - O_SE_NO_PASS not found, checking O_SE_NO_PASS_LAST')
             last_text_pos = self.O_SE_NO_PASS_LAST.ocr(self.device.image)
+            logger.info(f'find_battle() - O_SE_NO_PASS_LAST position: {last_text_pos}')
             if last_text_pos != (0, 0, 0, 0):
                 # 如果是后面找得到
                 layer = confirm_layer(self.O_SE_JADE, last_text_pos)
@@ -243,6 +253,7 @@ class ScriptTask(GameUi, GeneralBattle, SwitchSoul, SecretAssets):
 
             else:
                 # 如果不是就一直滑动
+                logger.info('find_battle() - No "未通关" found, swiping down')
                 self.swipe(self.S_SE_DOWN_SEIPE, interval=3)
                 time.sleep(2)
 
