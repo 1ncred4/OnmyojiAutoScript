@@ -43,6 +43,15 @@ class ScriptTask(GeneralBattle, GeneralInvite, GeneralBuff, GeneralRoom, GameUi,
         self.ui_goto(page_main)
         config: FallenSun = self.config.fallen_sun
 
+        # 开启金币加成
+        if config.fallen_sun_config.gold_50 or config.fallen_sun_config.gold_100:
+            self.open_buff()
+            if config.fallen_sun_config.gold_50:
+                self.gold_50(True)
+            if config.fallen_sun_config.gold_100:
+                self.gold_100(True)
+            self.close_buff()
+
         success = True
         match config.fallen_sun_config.user_status:
             case UserStatus.LEADER: success = self.run_leader()
@@ -50,6 +59,15 @@ class ScriptTask(GeneralBattle, GeneralInvite, GeneralBuff, GeneralRoom, GameUi,
             case UserStatus.ALONE: self.run_alone()
             case UserStatus.WILD: self.run_wild()
             case _: logger.error('Unknown user status')
+
+        # 关闭金币加成
+        if config.fallen_sun_config.gold_50 or config.fallen_sun_config.gold_100:
+            self.open_buff()
+            if config.fallen_sun_config.gold_50:
+                self.gold_50(False)
+            if config.fallen_sun_config.gold_100:
+                self.gold_100(False)
+            self.close_buff()
 
         # 下一次运行时间
         if success:

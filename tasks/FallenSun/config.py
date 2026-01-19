@@ -35,6 +35,9 @@ class FallenSunConfig(ConfigBase):
     limit_time: Time = Field(default=Time(minute=30), description='limit_time_help')
     # 限制次数
     limit_count: int = Field(default=50, description='limit_count_help')
+    # 金币加成
+    gold_50: bool = Field(title='Gold 50', default=False, description='gold_50_help')
+    gold_100: bool = Field(title='Gold 100', default=False, description='gold_100_help')
 
 
 class FallenSun(ConfigBase):
