@@ -1,17 +1,17 @@
 {
   "config_name": "B站-自定义",
-  "running_task": "",
+  "running_task": "ActivityShikigami",
   "script": {
     "device": {
-      "serial": "127.0.0.1:16448",
+      "serial": "127.0.0.1:16416",
       "handle": "",
       "package_name": "auto",
       "screenshot_method": "nemu_ipc",
       "control_method": "minitouch",
       "adb_restart": false,
       "emulatorinfo_type": "MuMuPlayer12",
-      "emulatorinfo_name": "MuMuPlayer-12.0-2",
-      "emulatorinfo_path": "C:/Program Files/Netease/MuMu Player 12/nx_main/MuMuNxMain.exe",
+      "emulatorinfo_name": "MuMuPlayer-12.0-1",
+      "emulatorinfo_path": "C:/Program Files/Netease/MuMuPlayer-12.0/nx_main/MuMuNxMain.exe",
       "emulator_window_minimize": false,
       "run_background_only": false
     },
@@ -34,7 +34,7 @@
   "restart": {
     "scheduler": {
       "enable": false,
-      "next_run": "2026-02-01 11:04:47",
+      "next_run": "2026-02-11 16:33:36",
       "priority": 0,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -569,7 +569,7 @@
   "orochi": {
     "scheduler": {
       "enable": false,
-      "next_run": "2026-02-03 03:00:00",
+      "next_run": "2026-02-08 03:00:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -789,7 +789,7 @@
   },
   "activity_shikigami": {
     "scheduler": {
-      "enable": false,
+      "enable": true,
       "next_run": "2026-01-21 05:00:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
@@ -1014,8 +1014,8 @@
   },
   "evo_zone": {
     "scheduler": {
-      "enable": true,
-      "next_run": "2026-02-03 20:44:32",
+      "enable": false,
+      "next_run": "2026-02-11 21:36:17",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",

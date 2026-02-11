@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(set:*)",
+      "Bash(export:*)"
     ]
   }
 }

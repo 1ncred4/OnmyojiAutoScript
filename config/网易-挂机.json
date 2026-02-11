@@ -1,9 +1,9 @@
 {
   "config_name": "网易-挂机",
-  "running_task": "Duel",
+  "running_task": "",
   "script": {
     "device": {
-      "serial": "127.0.0.1:16416",
+      "serial": "127.0.0.1:16384",
       "handle": "",
       "package_name": "auto",
       "screenshot_method": "nemu_ipc",
@@ -11,7 +11,7 @@
       "adb_restart": false,
       "emulatorinfo_type": "MuMuPlayer12",
       "emulatorinfo_name": "MuMuPlayer-12.0-1",
-      "emulatorinfo_path": "C:/Program Files/Netease/MuMu Player 12/nx_main/MuMuNxMain.exe",
+      "emulatorinfo_path": "C:/Program Files/Netease/MuMuPlayer-12.0/nx_main/MuMuNxMain.exe",
       "emulator_window_minimize": false,
       "run_background_only": false
     },
@@ -34,7 +34,7 @@
   "restart": {
     "scheduler": {
       "enable": false,
-      "next_run": "2026-02-02 18:35:43",
+      "next_run": "2026-02-09 16:33:17",
       "priority": 0,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -87,7 +87,7 @@
   "area_boss": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-04 01:00:00",
+      "next_run": "2026-02-11 01:00:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -184,7 +184,7 @@
   "realm_raid": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-03 22:04:37",
+      "next_run": "2026-02-10 22:44:10",
       "priority": 5,
       "success_interval": "00 01:00:00",
       "failure_interval": "00 00:10:00",
@@ -220,7 +220,7 @@
   "ryou_toppa": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-04 07:00:00",
+      "next_run": "2026-02-10 22:09:24",
       "priority": 6,
       "success_interval": "00 00:30:00",
       "failure_interval": "00 00:30:00",
@@ -302,7 +302,7 @@
   "demon_encounter": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-04 17:05:00",
+      "next_run": "2026-02-11 17:05:00",
       "priority": 2,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -376,7 +376,7 @@
   "daily_trifles": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-04 01:00:00",
+      "next_run": "2026-02-11 01:00:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -398,7 +398,7 @@
   "talisman_pass": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-03 23:33:37",
+      "next_run": "2026-02-10 23:11:45",
       "priority": 5,
       "success_interval": "00 02:00:00",
       "failure_interval": "00 02:00:00",
@@ -445,7 +445,7 @@
   "delegation": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-04 03:33:56",
+      "next_run": "2026-02-11 02:55:03",
       "priority": 5,
       "success_interval": "00 06:00:00",
       "failure_interval": "00 06:00:00",
@@ -1329,7 +1329,7 @@
   "secret": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-10 05:00:00",
+      "next_run": "2026-02-16 05:00:00",
       "priority": 5,
       "success_interval": "07 00:00:00",
       "failure_interval": "07 00:00:00",
@@ -1408,7 +1408,7 @@
   "duel": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-03 12:00:00",
+      "next_run": "2026-02-11 12:00:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -1459,7 +1459,7 @@
   "hunt": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-04 19:02:00",
+      "next_run": "2026-02-11 19:02:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -1497,7 +1497,7 @@
   "dokan": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-04 19:01:00",
+      "next_run": "2026-02-11 19:01:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -1539,7 +1539,7 @@
     },
     "attack_count_config": {
       "remain_attack_count": 0,
-      "attack_date": "2026-02-03",
+      "attack_date": "2026-02-10",
       "daily_attack_count": 2,
       "attack_dokan_master": "ATTACK_TWO_TWO"
     }
@@ -1586,7 +1586,7 @@
   "guild_banquet": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-04 19:01:00",
+      "next_run": "2026-02-11 19:01:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",

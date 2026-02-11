@@ -51,18 +51,24 @@ class ActivityShikigamiAssets:
 	I_SKIP_BUTTON = RuleImage(roi_front=(1159,37,51,22), roi_back=(1141,27,86,43), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_skip_button.png")
 	# 红色退出 
 	I_RED_EXIT = RuleImage(roi_front=(1162,96,39,38), roi_back=(1120,49,110,135), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_red_exit.png")
-	# 进入主要的战斗界面 
-	I_TO_BATTLE_MAIN = RuleImage(roi_front=(480,320,39,176), roi_back=(470,300,100,241), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_to_battle_main.png")
+	# 进入活动首页 
+	I_TO_ACT = RuleImage(roi_front=(150,18,100,46), roi_back=(150,18,200,100), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_act.png")
+	# 进入中间界面
+	I_TO_BATTLE_SECOND = RuleImage(roi_front=(260,300,60,130), roi_back=(260,300,100,200), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_to_battle_second.png")
+	# 进入主要的战斗界面
+	I_TO_BATTLE_MAIN = RuleImage(roi_front=(200,100,50,50), roi_back=(200,100,100,100), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_to_battle_main.png")
 	# 切换体力/门票模式 
 	I_SWITCH_AP_PASS = RuleImage(roi_front=(1230,520,40,40), roi_back=(1230,520,50,50), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_switch.png")
 	# 进入体力模式 
-	I_CHECK_AP = RuleImage(roi_front=(40,630,70,70), roi_back=(30,600,100,100), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_ap.png")
+	I_CHECK_AP = RuleImage(roi_front=(20,630,70,70), roi_back=(20,600,100,100), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_ap.png")
 	# 进入门票模式 
-	I_CHECK_PASS = RuleImage(roi_front=(40,630,70,70), roi_back=(30,600,100,100), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_ap_activity.png")
+	I_CHECK_PASS = RuleImage(roi_front=(20,630,70,70), roi_back=(20,600,100,100), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_ap_activity.png")
 	# 点击进入boss战斗页面 
 	I_TO_BATTLE_BOSS = RuleImage(roi_front=(931,217,37,173), roi_back=(909,198,100,219), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_to_battle_boss.png")
 	# description 
 	I_CHECK_BATTLE_MAIN = RuleImage(roi_front=(150,18,100,46), roi_back=(150,18,200,100), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_check_battle_main.png")
+	# description 
+	I_CHECK_BATTLE_SECOND = RuleImage(roi_front=(150,18,100,46), roi_back=(150,18,200,100), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_check_battle_second.png")
 	# description 
 	I_CHECK_BATTLE_BOSS = RuleImage(roi_front=(0,0,100,100), roi_back=(0,0,100,100), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_check_battle_boss.png")
 	# 从main进入到式神录 
@@ -100,11 +106,11 @@ class ActivityShikigamiAssets:
 
 	# Ocr Rule Assets
 	# 挑战 
-	O_FIRE = RuleOcr(roi=(1137,599,83,44), area=(1129,570,100,100), mode="Single", method="Default", keyword="挑战", name="fire")
+	O_FIRE = RuleOcr(roi=(1129,599,83,44), area=(1129,570,100,100), mode="Single", method="Default", keyword="挑战", name="fire")
 	# 体力的数量检测 
-	O_REMAIN_AP = RuleOcr(roi=(950,18,73,29), area=(950,18,73,29), mode="DigitCounter", method="Default", keyword="", name="remain_ap")
+	O_REMAIN_AP = RuleOcr(roi=(600,18,73,29), area=(600,18,73,29), mode="DigitCounter", method="Default", keyword="", name="remain_ap")
 	# 活动体力的剩余检测 
-	O_REMAIN_PASS = RuleOcr(roi=(550,18,57,28), area=(550,18,57,28), mode="DigitCounter", method="Default", keyword="", name="remain_pass")
+	O_REMAIN_PASS = RuleOcr(roi=(800,18,57,28), area=(800,18,57,28), mode="DigitCounter", method="Default", keyword="", name="remain_pass")
 	# 还有多少次购买体力的机会 
 	O_REMAIN_BUY = RuleOcr(roi=(808,531,39,42), area=(808,531,39,42), mode="DigitCounter", method="Default", keyword="", name="remain_buy")
 	# 活动票数（没有百分比） 
