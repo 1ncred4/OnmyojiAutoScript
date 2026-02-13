@@ -60,7 +60,7 @@ class ActivityShikigamiAssets:
 	# 切换体力/门票模式 
 	I_SWITCH_AP_PASS = RuleImage(roi_front=(1230,520,40,40), roi_back=(1230,520,50,50), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_switch.png")
 	# 进入体力模式 
-	I_CHECK_AP = RuleImage(roi_front=(20,630,70,70), roi_back=(20,600,100,100), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_ap.png")
+	I_CHECK_AP = RuleImage(roi_front=(20,630,70,70), roi_back=(20,600,80,80), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_ap.png")
 	# 进入门票模式 
 	I_CHECK_PASS = RuleImage(roi_front=(20,630,70,70), roi_back=(20,600,100,100), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_ap_activity.png")
 	# 点击进入boss战斗页面 
@@ -108,7 +108,7 @@ class ActivityShikigamiAssets:
 	# 挑战 
 	O_FIRE = RuleOcr(roi=(1129,599,83,44), area=(1129,570,100,100), mode="Single", method="Default", keyword="挑战", name="fire")
 	# 体力的数量检测 
-	O_REMAIN_AP = RuleOcr(roi=(600,18,73,29), area=(600,18,73,29), mode="DigitCounter", method="Default", keyword="", name="remain_ap")
+	O_REMAIN_AP = RuleOcr(roi=(590,18,73,29), area=(590,18,73,29), mode="DigitCounter", method="Default", keyword="", name="remain_ap")
 	# 活动体力的剩余检测 
 	O_REMAIN_PASS = RuleOcr(roi=(800,18,57,28), area=(800,18,57,28), mode="DigitCounter", method="Default", keyword="", name="remain_pass")
 	# 还有多少次购买体力的机会 
@@ -118,7 +118,7 @@ class ActivityShikigamiAssets:
 	# boss剩余攻击次数 
 	O_REMAIN_BOSS = RuleOcr(roi=(1113,669,131,31), area=(1099,659,162,52), mode="DigitCounter", method="Default", keyword="", name="remain_boss")
 	# 100体活动门票检测 
-	O_REMAIN_AP100 = RuleOcr(roi=(922,21,112,39), area=(913,8,131,62), mode="Digit", method="Default", keyword="", name="remain_ap100")
+	O_REMAIN_AP100 = RuleOcr(roi=(600,21,112,39), area=(600,8,131,62), mode="Digit", method="Default", keyword="", name="remain_ap100")
 	# 进入100体活动标识 
 	O_ENTER_AP100 = RuleOcr(roi=(73,98,95,32), area=(5,79,256,108), mode="Single", method="Default", keyword="将魂试炼", name="enter_ap100")
 

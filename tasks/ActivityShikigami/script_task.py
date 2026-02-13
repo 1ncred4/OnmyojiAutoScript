@@ -203,8 +203,8 @@ class ScriptTask(StateMachine, GameUi, BaseActivity, SwitchSoul, ActivityShikiga
                 break
             if self.conf.general_climb.random_sleep:
                 random_sleep(probability=0.2)
-            if self.start_battle():
-                continue
+            if not self.start_battle():
+                break
 
         self.ui_click(self.I_UI_BACK_YELLOW, stop=self.I_TO_BATTLE_MAIN, interval=1)
 
@@ -236,8 +236,8 @@ class ScriptTask(StateMachine, GameUi, BaseActivity, SwitchSoul, ActivityShikiga
                 break
             if self.conf.general_climb.random_sleep:
                 random_sleep(probability=0.2)
-            if self.start_battle():
-                continue
+            if not self.start_battle():
+                break
 
         self.ui_click(self.I_UI_BACK_YELLOW, stop=self.I_TO_BATTLE_MAIN, interval=1)
 
@@ -247,24 +247,28 @@ class ScriptTask(StateMachine, GameUi, BaseActivity, SwitchSoul, ActivityShikiga
         """
         logger.hr(f'Start run climb type BOSS')
 
-    def start_battle(self):
-        click_times, max_times = 0, random.randint(2, 4)
+    def start_battle(self) -> bool:
+        click_times, max_times = 0, 4
         while 1:
             self.screenshot()
             if self.is_in_battle(False):
-                break
+                return True if self.run_general_battle(config=self.get_general_battle_conf()) is not None else True
             if click_times >= max_times:
                 logger.warning(f'Climb {self.climb_type} cannot enter, maybe already end, try next')
-                return
+                return False
             if (self.appear_then_click(self.I_UI_CONFIRM_SAMLL, interval=1) or
-                    self.appear_then_click(self.I_UI_CONFIRM, interval=1) ):
+                    self.appear_then_click(self.I_UI_CONFIRM, interval=1)):
                 continue
             if self.ocr_appear_click(self.O_FIRE, interval=2):
                 click_times += 1
                 logger.info(f'Try click fire, remain times[{max_times - click_times}]')
+                # 点击挑战后给一个短等待窗口来检测是否进入战斗
+                short_wait = Timer(4).start()
+                while not short_wait.reached():
+                    self.screenshot()
+                    if self.is_in_battle(False):
+                        return True if self.run_general_battle(config=self.get_general_battle_conf()) is not None else True
                 continue
-        # 运行战斗
-        self.run_general_battle(config=self.get_general_battle_conf())
 
     def battle_wait(self, random_click_swipt_enable: bool) -> bool:
         # 通用战斗结束判断
@@ -304,7 +308,7 @@ class ScriptTask(StateMachine, GameUi, BaseActivity, SwitchSoul, ActivityShikiga
                         break
                     if appear_reward or appear_reward_purple_snake_skin:
                         reward_click = random.choice(
-                            [self.C_RANDOM_LEFT, self.C_RANDOM_RIGHT, self.C_RANDOM_TOP])
+                            [self.C_RANDOM_LEFT])
                         self.click(reward_click, interval=1.8)
                         continue
                 return True
@@ -398,7 +402,7 @@ class ScriptTask(StateMachine, GameUi, BaseActivity, SwitchSoul, ActivityShikiga
         :param click_now: 是否立即点击
         :return: 随机的点击位置
         """
-        options = [self.C_RANDOM_LEFT, self.C_RANDOM_RIGHT, self.C_RANDOM_TOP, self.C_RANDOM_BOTTOM]
+        options = [self.C_RANDOM_LEFT, self.C_RANDOM_BOTTOM]
         if exclude_click:
             options = [option for option in options if option not in exclude_click]
         target = random.choice(options)
@@ -416,5 +420,4 @@ if __name__ == '__main__':
     t = ScriptTask(c, d)
 
     t.run()
-
 
