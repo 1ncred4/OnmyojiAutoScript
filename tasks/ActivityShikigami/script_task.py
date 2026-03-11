@@ -149,18 +149,13 @@ class ScriptTask(StateMachine, GameUi, BaseActivity, SwitchSoul, ActivityShikiga
 
     def run(self) -> None:
         self.limit_time: timedelta = self.conf.general_climb.limit_time_v
-        #
         for climb_type in self.conf.general_climb.run_sequence_v:
-            # 进入到活动的主页面，不是具体的战斗页面
-            self.ui_get_current_page()
-            self.ui_goto(game.page_climb_act)
-            self.ui_click(self.I_TO_BATTLE_SECOND, stop=self.I_CHECK_BATTLE_SECOND, interval=1)
             try:
                 method_func = getattr(self, f'_run_{climb_type}')
                 method_func()
-            except LimitCountOut as e:
-                self.ui_click(self.I_UI_BACK_YELLOW, stop=self.I_TO_BATTLE_MAIN, interval=1)
-            except LimitTimeOut as e:
+            except LimitCountOut:
+                logger.info(f'Climb type {climb_type} count limit reached, switch to next')
+            except LimitTimeOut:
                 break
             finally:
                 # 切换下一个爬塔类型
@@ -180,7 +175,6 @@ class ScriptTask(StateMachine, GameUi, BaseActivity, SwitchSoul, ActivityShikiga
             更新前请先看 ./README.md
         """
         logger.hr(f'Start run climb type pass')
-        self.ui_click(self.I_TO_BATTLE_MAIN, stop=self.I_CHECK_BATTLE_MAIN, interval=1)
         if not self.appear(self.I_CHECK_PASS):
             self.ui_click(self.I_SWITCH_AP_PASS, stop=self.I_CHECK_PASS, interval=1)
         self.switch_soul(self.I_BATTLE_MAIN_TO_RECORDS, self.I_CHECK_BATTLE_MAIN)
@@ -206,14 +200,11 @@ class ScriptTask(StateMachine, GameUi, BaseActivity, SwitchSoul, ActivityShikiga
             if not self.start_battle():
                 break
 
-        self.ui_click(self.I_UI_BACK_YELLOW, stop=self.I_TO_BATTLE_MAIN, interval=1)
-
     def _run_ap(self):
         """
             更新前请先看 ./README.md
         """
         logger.hr(f'Start run climb type AP')
-        self.ui_click(self.I_TO_BATTLE_MAIN, stop=self.I_CHECK_BATTLE_MAIN, interval=1)
         if not self.appear(self.I_CHECK_AP):
             self.ui_click(self.I_SWITCH_AP_PASS, stop=self.I_CHECK_AP, interval=1)
         self.switch_soul(self.I_BATTLE_MAIN_TO_RECORDS, self.I_CHECK_BATTLE_MAIN)
@@ -238,8 +229,6 @@ class ScriptTask(StateMachine, GameUi, BaseActivity, SwitchSoul, ActivityShikiga
                 random_sleep(probability=0.2)
             if not self.start_battle():
                 break
-
-        self.ui_click(self.I_UI_BACK_YELLOW, stop=self.I_TO_BATTLE_MAIN, interval=1)
 
     def _run_boss(self):
         """

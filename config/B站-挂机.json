@@ -34,7 +34,7 @@
   "restart": {
     "scheduler": {
       "enable": false,
-      "next_run": "2026-02-12 14:46:35",
+      "next_run": "2026-03-08 20:46:33",
       "priority": 0,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -87,7 +87,7 @@
   "area_boss": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-14 01:00:00",
+      "next_run": "2026-03-09 01:00:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -184,7 +184,7 @@
   "realm_raid": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-13 14:48:50",
+      "next_run": "2026-03-08 21:37:01",
       "priority": 5,
       "success_interval": "00 01:00:00",
       "failure_interval": "00 00:10:00",
@@ -220,7 +220,7 @@
   "ryou_toppa": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-13 14:47:11",
+      "next_run": "2026-03-08 21:10:08",
       "priority": 5,
       "success_interval": "00 00:30:00",
       "failure_interval": "00 00:30:00",
@@ -230,6 +230,8 @@
     },
     "raid_config": {
       "limit_time": "00:30:00",
+      "night_limit_enable": false,
+      "night_limit_time": "00:10:00",
       "limit_count": 10,
       "next_ryoutoppa_time": "07:00:00",
       "skip_difficult": true,
@@ -302,7 +304,7 @@
   "demon_encounter": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-14 17:05:00",
+      "next_run": "2026-03-09 17:05:00",
       "priority": 2,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -376,7 +378,7 @@
   "daily_trifles": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-14 01:00:00",
+      "next_run": "2026-03-09 01:00:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -398,7 +400,7 @@
   "talisman_pass": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-13 16:17:26",
+      "next_run": "2026-03-08 23:02:26",
       "priority": 5,
       "success_interval": "00 02:00:00",
       "failure_interval": "00 02:00:00",
@@ -445,7 +447,7 @@
   "delegation": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-13 19:50:30",
+      "next_run": "2026-03-09 02:46:55",
       "priority": 5,
       "success_interval": "00 06:00:00",
       "failure_interval": "00 06:00:00",
@@ -1329,7 +1331,7 @@
   "secret": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-16 05:00:00",
+      "next_run": "2026-03-11 05:00:00",
       "priority": 5,
       "success_interval": "07 00:00:00",
       "failure_interval": "07 00:00:00",
@@ -1408,7 +1410,7 @@
   "duel": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-14 12:00:00",
+      "next_run": "2026-03-09 12:00:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -1459,7 +1461,7 @@
   "hunt": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-13 19:02:00",
+      "next_run": "2026-03-09 19:02:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -1497,7 +1499,7 @@
   "dokan": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-14 19:01:00",
+      "next_run": "2026-03-09 19:01:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -1539,7 +1541,7 @@
     },
     "attack_count_config": {
       "remain_attack_count": 0,
-      "attack_date": "2026-02-11",
+      "attack_date": "2026-03-04",
       "daily_attack_count": 2,
       "attack_dokan_master": "ATTACK_TWO_TWO"
     }
@@ -1586,7 +1588,7 @@
   "guild_banquet": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-02-14 19:31:00",
+      "next_run": "2026-03-09 19:31:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",

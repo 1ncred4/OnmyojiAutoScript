@@ -76,14 +76,31 @@ def random_delay(min_value: float = 1.0, max_value: float = 2.0, decimal: int = 
 class ScriptTask(GeneralBattle, GameUi, SwitchSoul, RyouToppaAssets):
     medal_grid: ImageGrid = None
 
+    @staticmethod
+    def is_unlimited_attack_time(now: datetime = None) -> bool:
+        now = now or datetime.now()
+        # 21点后、次日5点前无限进攻机会
+        return now.hour >= 21 or now.hour <= 5
+
+    @staticmethod
+    def build_time_delta(limit_time: Time) -> timedelta:
+        return timedelta(hours=limit_time.hour, minutes=limit_time.minute, seconds=limit_time.second)
+
+    def get_effective_time_limit(self) -> timedelta:
+        raid_config = self.config.ryou_toppa.raid_config
+        base_limit = self.build_time_delta(raid_config.limit_time)
+        if not raid_config.night_limit_enable or not self.is_unlimited_attack_time():
+            return base_limit
+
+        night_limit = self.build_time_delta(raid_config.night_limit_time)
+        return min(base_limit, night_limit)
+
     def run(self):
         """
         执行
         :return:
         """
         ryou_config = self.config.ryou_toppa
-        time_limit: Time = ryou_config.raid_config.limit_time
-        time_delta = timedelta(hours=time_limit.hour, minutes=time_limit.minute, seconds=time_limit.second)
         self.medal_grid = ImageGrid([RealmRaidAssets.I_MEDAL_5, RealmRaidAssets.I_MEDAL_4, RealmRaidAssets.I_MEDAL_3,
                                      RealmRaidAssets.I_MEDAL_2, RealmRaidAssets.I_MEDAL_1, RealmRaidAssets.I_MEDAL_0])
 
@@ -168,8 +185,12 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, RyouToppaAssets):
             if self.current_count >= ryou_config.raid_config.limit_count:
                 logger.warning("We have attacked the limit count.")
                 break
-            if datetime.now() >= self.start_time + time_delta:
-                logger.warning("We have attacked the limit time.")
+            effective_time_limit = self.get_effective_time_limit()
+            if datetime.now() >= self.start_time + effective_time_limit:
+                if ryou_config.raid_config.night_limit_enable and self.is_unlimited_attack_time():
+                    logger.warning("We have attacked the night limit time.")
+                else:
+                    logger.warning("We have attacked the limit time.")
                 break
             # 进攻
             res = self.attack_area(area_index)
@@ -236,8 +257,7 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, RyouToppaAssets):
         如果没有票了，那么就返回False
         :return:
         """
-        # 21点后、次日5点前无限进攻机会
-        if datetime.now().hour >= 21 or datetime.now().hour <= 5:
+        if self.is_unlimited_attack_time():
             return True
         self.wait_until_appear(self.I_TOPPA_RECORD)
         self.screenshot()

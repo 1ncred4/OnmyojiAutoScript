@@ -10,6 +10,9 @@ from tasks.Component.config_scheduler import Scheduler
 class RaidConfig(BaseModel):
     # 限制时间
     limit_time: Time = Field(default=Time(minute=30), description='limit_time_help')
+    # 夜间无限次数时的额外限制时间
+    night_limit_enable: bool = Field(default=False, description='night_limit_enable_help')
+    night_limit_time: Time = Field(default=Time(minute=10), description='night_limit_time_help')
     # 限制次数
     limit_count: int = Field(default=50, description='limit_count_help')
     # 攻破完成后指定下次运行时间

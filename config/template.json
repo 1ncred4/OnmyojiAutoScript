@@ -230,6 +230,8 @@
     },
     "raid_config": {
       "limit_time": "00:30:00",
+      "night_limit_enable": false,
+      "night_limit_time": "00:10:00",
       "limit_count": 50,
       "next_ryoutoppa_time": "07:00:00",
       "skip_difficult": true,
