@@ -34,7 +34,7 @@
   "restart": {
     "scheduler": {
       "enable": false,
-      "next_run": "2026-03-07 11:39:31",
+      "next_run": "2026-03-11 12:22:52",
       "priority": 0,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -87,7 +87,7 @@
   "area_boss": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-03-09 01:00:00",
+      "next_run": "2026-03-12 01:00:00",
       "priority": 5,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",
@@ -184,7 +184,7 @@
   "realm_raid": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-03-08 21:39:06",
+      "next_run": "2026-03-11 13:13:53",
       "priority": 5,
       "success_interval": "00 01:00:00",
       "failure_interval": "00 00:10:00",
@@ -304,7 +304,7 @@
   "demon_encounter": {
     "scheduler": {
       "enable": true,
-      "next_run": "2026-03-09 17:05:00",
+      "next_run": "2026-03-12 17:05:00",
       "priority": 2,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",

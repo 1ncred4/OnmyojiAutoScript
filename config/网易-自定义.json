@@ -34,7 +34,7 @@
   "restart": {
     "scheduler": {
       "enable": false,
-      "next_run": "2026-02-18 19:23:37",
+      "next_run": "2026-03-11 12:25:25",
       "priority": 0,
       "success_interval": "01 00:00:00",
       "failure_interval": "01 00:00:00",

@@ -74,6 +74,10 @@ def _prepare_image_for_ocr(image: np.ndarray, asset: RuleOcr) -> np.ndarray:
     return image_copy
 
 
+def _ocr_digit_with_preprocess(task: "ScriptTask", asset: RuleOcr) -> int:
+    return asset.ocr_digit(_prepare_image_for_ocr(task.device.image, asset=asset))
+
+
 class LimitTimeOut(Exception):
     pass
 
@@ -147,6 +151,12 @@ class ScriptTask(StateMachine, GameUi, BaseActivity, SwitchSoul, ActivityShikiga
     更新前请先看 ./README.md
     """
 
+    def _prepare_battle_main(self, target_mode: str):
+        target_check = self.I_CHECK_PASS if target_mode == 'pass' else self.I_CHECK_AP
+        if not self.appear(target_check):
+            self.ui_click(self.C_SWITCH_AP_PASS, stop=target_check, interval=1)
+        self.switch_soul(self.I_BATTLE_MAIN_TO_RECORDS, self.I_CHECK_BATTLE_MAIN)
+
     def run(self) -> None:
         self.limit_time: timedelta = self.conf.general_climb.limit_time_v
         for climb_type in self.conf.general_climb.run_sequence_v:
@@ -175,9 +185,7 @@ class ScriptTask(StateMachine, GameUi, BaseActivity, SwitchSoul, ActivityShikiga
             更新前请先看 ./README.md
         """
         logger.hr(f'Start run climb type pass')
-        if not self.appear(self.I_CHECK_PASS):
-            self.ui_click(self.I_SWITCH_AP_PASS, stop=self.I_CHECK_PASS, interval=1)
-        self.switch_soul(self.I_BATTLE_MAIN_TO_RECORDS, self.I_CHECK_BATTLE_MAIN)
+        self._prepare_battle_main('pass')
 
         ocr_limit_timer = Timer(1).start()
         while 1:
@@ -205,9 +213,7 @@ class ScriptTask(StateMachine, GameUi, BaseActivity, SwitchSoul, ActivityShikiga
             更新前请先看 ./README.md
         """
         logger.hr(f'Start run climb type AP')
-        if not self.appear(self.I_CHECK_AP):
-            self.ui_click(self.I_SWITCH_AP_PASS, stop=self.I_CHECK_AP, interval=1)
-        self.switch_soul(self.I_BATTLE_MAIN_TO_RECORDS, self.I_CHECK_BATTLE_MAIN)
+        self._prepare_battle_main('ap')
 
         ocr_limit_timer = Timer(1).start()
         while 1:
@@ -358,16 +364,13 @@ class ScriptTask(StateMachine, GameUi, BaseActivity, SwitchSoul, ActivityShikiga
         self.screenshot()
         remain_times = 0
         if self.climb_type == 'pass':
-            remain_times = self.O_REMAIN_PASS.ocr_digit(
-                _prepare_image_for_ocr(self.device.image, asset=self.O_REMAIN_PASS))
+            remain_times = _ocr_digit_with_preprocess(self, self.O_REMAIN_PASS)
         if self.climb_type == 'ap':
-            remain_times = self.O_REMAIN_AP.ocr_digit(
-                _prepare_image_for_ocr(self.device.image, asset=self.O_REMAIN_AP))
+            remain_times = _ocr_digit_with_preprocess(self, self.O_REMAIN_AP)
         if self.climb_type == 'boss':
             _, remain_times, _ = self.O_REMAIN_BOSS.ocr_digit_counter(self.device.image)
         if self.climb_type == 'ap100':
-            remain_times = self.O_REMAIN_AP100.ocr_digit(
-                _prepare_image_for_ocr(self.device.image, asset=self.O_REMAIN_AP100))
+            remain_times = _ocr_digit_with_preprocess(self, self.O_REMAIN_AP100)
         return remain_times > 0
 
     def get_general_battle_conf(self) -> tasks.Component.GeneralBattle.config_general_battle.GeneralBattleConfig:
@@ -409,4 +412,3 @@ if __name__ == '__main__':
     t = ScriptTask(c, d)
 
     t.run()
-

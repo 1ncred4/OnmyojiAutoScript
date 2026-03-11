@@ -20,28 +20,28 @@
   {
     "itemName": "ap",
     "imageName": "as_ap.png",
-    "roiFront": "1181,657,23,24",
-    "roiBack": "1149,631,103,71",
+    "roiFront": "28,446,64,108",
+    "roiBack": "0,430,160,160",
     "method": "Template matching",
-    "threshold": 0.65,
-    "description": "寿司体力"
+    "threshold": 0.75,
+    "description": "体力模式徽记"
   },
   {
     "itemName": "ap_activity",
     "imageName": "as_ap_activity.png",
-    "roiFront": "1153,636,21,25",
-    "roiBack": "1124,621,84,54",
+    "roiFront": "28,446,64,108",
+    "roiBack": "0,430,160,160",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "活动体力"
+    "threshold": 0.75,
+    "description": "门票模式徽记"
   },
   {
     "itemName": "switch",
     "imageName": "as_switch.png",
-    "roiFront": "1215,551,23,23",
-    "roiBack": "1204,538,74,49",
+    "roiFront": "1232,521,32,36",
+    "roiBack": "1204,499,72,82",
     "method": "Template matching",
-    "threshold": 0.8,
+    "threshold": 0.75,
     "description": "切换按键"
   },
   {

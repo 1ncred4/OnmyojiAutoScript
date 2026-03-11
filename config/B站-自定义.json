@@ -802,8 +802,8 @@
     },
     "general_climb": {
       "limit_time": "12:00:00",
-      "pass_limit": 0,
-      "ap_limit": 1203,
+      "pass_limit": 50,
+      "ap_limit": 300,
       "boss_limit": 20,
       "ap100_limit": 20,
       "run_sequence": "pass,ap",

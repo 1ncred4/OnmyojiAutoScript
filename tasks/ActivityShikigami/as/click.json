@@ -28,5 +28,11 @@
     "roiFront": "42,94,1207,543",
     "roiBack": "42,94,1207,543",
     "description": "description"
+  },
+  {
+    "itemName": "switch_ap_pass",
+    "roiFront": "1232,521,32,36",
+    "roiBack": "1204,499,72,82",
+    "description": "右侧模式切换区域"
   }
 ]
